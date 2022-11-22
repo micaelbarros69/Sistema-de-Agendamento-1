@@ -59,20 +59,6 @@ const list = [
 
     type: "Aberto",
   },
-  {
-    id: 7,
-    label: "Campo do SAAE",
-    value: "Aberto",
-
-    type: "Aberto",
-  },
-  {
-    id: 8,
-    label: "Campo do SAAE",
-    value: "Aberto",
-
-    type: "Aberto",
-  },
 ];
 
 export default function Home() {

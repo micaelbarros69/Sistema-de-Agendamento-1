@@ -14,8 +14,14 @@ import { NavigationAction } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import { auth } from "../services/firebaseConnection";
-import { signInWithEmailAndPassword } from "firebase/auth";
-
+import {
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
+} from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
+import { dg } from "../services/firebaseConnection";
+import isEmail from "validator/lib/isEmail";
+import { initializeApp } from "firebase/app";
 export default function Login() {
   const navigation = useNavigation();
   const [hidePass, setHidePass] = useState(true);
@@ -46,6 +52,21 @@ export default function Login() {
       .catch(() => {
         Alert.alert("Acorda ai Amigo", "Email ou Senha Errado");
       });
+  }
+
+  function handleForgotPassword(e) {
+    e.preventDefault();
+    if (emailField === "") {
+      Alert.alert(
+        "Acorda ai Amigo",
+        "Coloque seu email para redefinir sua senha"
+      );
+
+      return;
+    }
+    sendPasswordResetEmail(auth, emailField)
+      .then(() => Alert.alert("Redefinir senha", "Enviamos um email para vc"))
+      .catch((error) => console.log(error));
   }
 
   return (
@@ -93,6 +114,9 @@ export default function Login() {
 
         <TouchableOpacity style={styles.button} onPress={handlelogin}>
           <Text style={styles.buttonText}>Acessar</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.buttons} onPress={handleForgotPassword}>
+          <Text style={styles.registerText}>Esquecir a senha</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -177,5 +201,9 @@ const styles = StyleSheet.create({
   },
   registerText: {
     color: "#a1a1a1",
+  },
+  buttons: {
+    marginTop: 14,
+    alignSelf: "center",
   },
 });

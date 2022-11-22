@@ -11,6 +11,7 @@ import Quadras3 from "../Quadras/index3";
 import Quadras4 from "../Quadras/index4";
 import Quadras5 from "../Quadras/index5";
 import Quadras6 from "../Quadras/index6";
+import Config from "../components/config/config";
 const Stack = createNativeStackNavigator();
 export default function Routes() {
   return (
@@ -75,6 +76,11 @@ export default function Routes() {
       <Stack.Screen
         name="Quadras6"
         component={Quadras6}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Config"
+        component={Config}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

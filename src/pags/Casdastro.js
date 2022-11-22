@@ -19,6 +19,8 @@ import { Keyframe } from "react-native-reanimated";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../services/firebaseConnection";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
+import { dg } from "../services/firebaseConnection";
 export default function Login({}) {
   const navigation = useNavigation();
   const [hidePass, setHidePass] = useState(true);
@@ -48,6 +50,16 @@ export default function Login({}) {
 
       return;
     }
+    setDoc(doc(dg, "users", "LA"), {
+      email: emailField,
+      password: passwordField,
+    })
+      .then(() => {
+        console.log("alo");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     navigation.navigate("Home");
   }
 
