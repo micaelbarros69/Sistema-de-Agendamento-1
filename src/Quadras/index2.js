@@ -1,4 +1,4 @@
-import React from "react";
+
 import {
   View,
   Text,
@@ -10,6 +10,10 @@ import Slider from "../components/Slider";
 import { MaterialIcons } from "@expo/vector-icons";
 import { NavigationAction } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
+
+import React, {component} from 'react';
+import {createOpenLink} from 'react-native-open-maps';
+import { Ionicons } from "@expo/vector-icons";
 
 const images = [
   "https://cdn.abcdoabc.com.br/quadra-poliesportiva-25-08_404c8352.jpg",
@@ -34,6 +38,14 @@ export default class Index extends React.Component {
         <View style={style.quadras}>
           <Slider images={images} />
         </View>
+
+        <View style={style.containerForm}>
+          <TouchableOpacity style= {style.areaButton} onPress={createOpenLink({latitude: -4.355187564661592, longitude:-39.31946635608429})}>
+            <View style={style.locationButton}>
+              <Ionicons name="location" size={70} color='#B40000' style={style.shadow}  />
+            </View>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
@@ -41,17 +53,21 @@ export default class Index extends React.Component {
 
 const style = StyleSheet.create({
   container: {
-    backgroundColor: "#38A69D",
-    paddingTop: statusBarHeigth,
-    flexDirection: "row",
-    paddingStart: 0,
-    paddingEnd: 0,
+    flex: 1,
+    backgroundColor: "#38a69d",
+  },
+
+  containerForm: {
+    backgroundColor: "#fff",
+    flex: 1,
+    paddingStart: "5%",
+    paddingEnd: "5%",
   },
   Text: {
     fontSize: 20,
     fontWeight: "bold",
-    marginTop: 0,
-    marginBottom: 30,
+    marginTop: 20,
+    marginBottom: -30,
     marginLeft: 65,
     marginRight: "auto",
     color: "#black",
@@ -62,4 +78,27 @@ const style = StyleSheet.create({
   button: {
     paddingStart: 10,
   },
+
+  areaButton: {
+    alignItems: "center",
+    marginLeft: 255,
+    marginTop: 390,
+  },
+
+  locationButton: {
+
+    alignItems: "center",
+    marginTop:0,
+    position: 'relative',
+  },
+
+  shadow: {
+    textShadowColor: '#a6a6a6',
+    textShadowOpacity: .50,
+    textShadowRadius: 20,
+    textShadowOffset: {
+      width: -2,
+      height: 5,
+    }
+    },
 });
