@@ -1,4 +1,3 @@
-import React from "react";
 import {
   View,
   Text,
@@ -10,6 +9,10 @@ import Slider from "../components/Slider";
 import { MaterialIcons } from "@expo/vector-icons";
 import { NavigationAction } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
+
+import React, {component} from 'react';
+import {createOpenLink} from 'react-native-open-maps';
+import { Ionicons } from "@expo/vector-icons";
 
 const images = [
   "https://www.informecidade.com.br/images/noticias/5987/13ee1107265901888601a61b75472409.jpg",
@@ -36,6 +39,13 @@ export default class Index extends React.Component {
         <View style={style.quadras}>
           <Slider images={images} />
         </View>
+        <View style={style.containerForm}>
+          <TouchableOpacity style= {style.areaButton} onPress={createOpenLink({latitude: -4.364469950242562, longitude: -39.32862090269486})}>
+            <View style={style.locationButton}>
+              <Ionicons name="location" size={70} color='#B40000' style={style.shadow}  />
+            </View>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
@@ -43,18 +53,15 @@ export default class Index extends React.Component {
 
 const style = StyleSheet.create({
   container: {
-    backgroundColor: "#38A69D",
-    paddingTop: statusBarHeigth,
-    flexDirection: "row",
-    paddingStart: 0,
-    paddingEnd: 0,
+    flex: 1,
+    backgroundColor: "#38a69d",
   },
   Text: {
     fontSize: 20,
     fontWeight: "bold",
-    marginTop: 0,
-    marginBottom: 30,
-    marginLeft: 100,
+    marginTop: 20,
+    marginBottom: -30,
+    marginLeft: 95,
     marginRight: "auto",
     color: "#black",
   },
@@ -64,4 +71,35 @@ const style = StyleSheet.create({
   button: {
     paddingStart: 10,
   },
+
+  
+  containerForm: {
+    backgroundColor: "#fff",
+    flex: 1,
+    paddingStart: "5%",
+    paddingEnd: "5%",
+  },
+
+  areaButton: {
+    alignItems: "center",
+    marginLeft: 255,
+    marginTop: 390,
+  },
+
+  locationButton: {
+
+    alignItems: "center",
+    marginTop:0,
+    position: 'relative',
+  },
+
+  shadow: {
+    textShadowColor: '#a6a6a6',
+    textShadowOpacity: .50,
+    textShadowRadius: 20,
+    textShadowOffset: {
+      width: -2,
+      height: 5,
+    }
+    },
 });
