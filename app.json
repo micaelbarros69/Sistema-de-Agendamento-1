@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Sistema de Agendamento",
-    "slug": "Sistema de Agendamento",
+    "name": "awesomeproject",
+    "slug": "awesomeproject",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

@@ -30,7 +30,10 @@ export default function Actions() {
         </View>
         <Text style={styles.labelButton}>Calendário</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.actionButton}>
+      <TouchableOpacity
+        style={styles.actionButton}
+        onPress={() => navigation.navigate("Agendamento")}
+      >
         <View style={styles.areaButton}>
           <MaterialIcons name="schedule" size={24} color="black" />
         </View>

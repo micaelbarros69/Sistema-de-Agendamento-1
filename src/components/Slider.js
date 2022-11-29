@@ -6,7 +6,9 @@ import {
   Dimensions,
   Text,
   StyleSheet,
+  TouchableOpacity,
 } from "react-native";
+import * as Animatable from "react-native-animatable";
 
 const { width } = Dimensions.get("window");
 const height = width * 0.6;

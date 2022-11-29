@@ -5,6 +5,7 @@ import {
   TextInput,
   StyleSheet,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 import { NavigationAction } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
@@ -17,7 +18,15 @@ export default function Config() {
   const navigation = useNavigation();
 
   function lougout() {
-    navigation.navigate("Login");
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        navigation.navigate("Login");
+      })
+      .catch(() => {
+        alert("erro");
+      });
   }
 
   return (
